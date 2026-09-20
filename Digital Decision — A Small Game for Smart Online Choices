@@ -1,0 +1,163 @@
+print("DIGITAL DECISION")
+print("Make the choice before the internet makes it for you.")
+
+name = input("\nEnter your name: ")
+
+score = 0
+right = 0
+wrong = 0
+
+topics = {
+    "Privacy": 0,
+    "Scam": 0,
+    "Information": 0,
+    "AI": 0
+}
+
+questions = [
+    {
+        "text": "You receive a message saying you got a part-time job. They ask for a payment before joining.",
+        "a": "Pay the money quickly",
+        "b": "Ignore the payment request and verify the job",
+        "c": "Send your ID first",
+        "answer": "b",
+        "topic": "Scam",
+        "reason": "A job offer asking for money should be treated as suspicious and verified first."
+    },
+    {
+        "text": "You see a shocking news post with no source or date.",
+        "a": "Forward it to friends",
+        "b": "Believe it because many people shared it",
+        "c": "Check the source and date first",
+        "answer": "c",
+        "topic": "Information",
+        "reason": "A popular post is not automatically a verified post."
+    },
+    {
+        "text": "An unknown person sends you a friend request and immediately asks for personal information.",
+        "a": "Share your details",
+        "b": "Accept and ask for their details",
+        "c": "Do not share personal information",
+        "answer": "c",
+        "topic": "Privacy",
+        "reason": "Personal information should not be shared with unknown people online."
+    },
+    {
+        "text": "An AI tool gives you an answer for an important college assignment.",
+        "a": "Submit it without checking",
+        "b": "Check important facts before using it",
+        "c": "Assume AI is always correct",
+        "answer": "b",
+        "topic": "AI",
+        "reason": "AI can provide incorrect or incomplete information, so important facts should be checked."
+    },
+    {
+        "text": "A website looks like a famous service but its web address looks unusual.",
+        "a": "Enter your password",
+        "b": "Check the website address before using it",
+        "c": "Enter your details and see what happens",
+        "answer": "b",
+        "topic": "Privacy",
+        "reason": "Look-alike websites can be used to collect private information."
+    },
+    {
+        "text": "A friend sends you a video that looks real but may have been created using AI.",
+        "a": "Share it immediately",
+        "b": "Check whether reliable sources confirm it",
+        "c": "Believe it because it looks realistic",
+        "answer": "b",
+        "topic": "AI",
+        "reason": "AI-generated content can look realistic, so important claims should be verified."
+    },
+    {
+        "text": "A message says your account will be closed in 10 minutes unless you click a link.",
+        "a": "Click immediately",
+        "b": "Share the link with others",
+        "c": "Open the official service separately and check",
+        "answer": "c",
+        "topic": "Scam",
+        "reason": "Urgent messages can create pressure. Checking through the official service is safer."
+    },
+    {
+        "text": "You find two different posts giving opposite information about the same event.",
+        "a": "Choose the post with more likes",
+        "b": "Check reliable sources before deciding",
+        "c": "Believe the first post you saw",
+        "answer": "b",
+        "topic": "Information",
+        "reason": "Likes and views do not prove that information is correct."
+    },
+    {
+        "text": "An app asks for access to information that does not seem necessary for its main purpose.",
+        "a": "Allow everything",
+        "b": "Check the permissions before allowing them",
+        "c": "Give permission because the app is popular",
+        "answer": "b",
+        "topic": "Privacy",
+        "reason": "App permissions should be checked before giving access to personal information."
+    },
+    {
+        "text": "An AI tool gives you a confident answer but provides no reliable source for an important fact.",
+        "a": "Accept it because the answer sounds confident",
+        "b": "Check the fact using reliable sources",
+        "c": "Share it as confirmed information",
+        "answer": "b",
+        "topic": "AI",
+        "reason": "A confident answer is not proof that the information is correct."
+    }
+]
+
+for i in range(len(questions)):
+    q = questions[i]
+
+    print("\n--------------------------------")
+    print("Situation", i + 1, "of", len(questions))
+    print("--------------------------------")
+    print(q["text"])
+
+    print("\nA.", q["a"])
+    print("B.", q["b"])
+    print("C.", q["c"])
+
+    answer = input("\nYour choice: ").lower()
+
+    while answer not in ["a", "b", "c"]:
+        print("Please enter A, B or C.")
+        answer = input("Your choice: ").lower()
+
+    if answer == q["answer"]:
+        print("\nCorrect.")
+        score += 10
+        right += 1
+        topics[q["topic"]] += 1
+    else:
+        print("\nNot the safest choice.")
+        wrong += 1
+
+    print("Why:", q["reason"])
+
+print("\n================================")
+print("DIGITAL DECISION REPORT")
+print("================================")
+
+print("Player:", name)
+print("Score:", score, "/", len(questions) * 10)
+print("Correct decisions:", right)
+print("Other decisions:", wrong)
+
+print("\nTopic results:")
+print("Privacy:", topics["Privacy"], "correct")
+print("Scam:", topics["Scam"], "correct")
+print("Information:", topics["Information"], "correct")
+print("AI:", topics["AI"], "correct")
+
+if score == 100:
+    print("\nDecision level: Excellent")
+elif score >= 70:
+    print("\nDecision level: Good")
+elif score >= 50:
+    print("\nDecision level: Needs more checking")
+else:
+    print("\nDecision level: Practice verification before trusting online information")
+
+print("\nRemember: Stop, check and then decide.")
